@@ -122,7 +122,7 @@ difference(){
 translate([30,0,0])
 difference(){
     cylinder(h=2, r=5.5); //ring OD
-    cylinder(h=2, r=3.25); //ring ID
+    cylinder(h=2, r=3.75); //ring ID
     translate([0,3.75,0]) // upper indent space
     cylinder(h=2, r=3);
     translate([0,-3.75,0]) //lower indent space
@@ -131,31 +131,38 @@ difference(){
 }
 
 // upper indent & arms
-translate([30,8.65,0])
+translate([30,8.9,0])
 difference(){
     cylinder(h=2, r=5);
     cylinder(h=2, r=4.8);
 }
-translate([30,3.75,0])
+translate([30,4,0])
 cylinder(h=2, r=1);
 
 // lower indent & arms
-translate([30,-8.65,0])
+translate([30,-8.9,0])
 difference(){
-    cylinder(h=2, r=5);
+        cylinder(h=2, r=5);
     cylinder(h=2, r=4.8);
 }
-translate([30,-3.75,0])
+translate([30,-4,0])
 cylinder(h=2, r=1);
 
 //outer nub circles
 translate([30,0,0]){
-//cylinder(h=3,r=5.5);
 cr = 10;
 dg = 36;
 for (i=[0:1:9]) {
-    translate([sin(i*dg)*cr,cos(i*dg)*cr,0]) {
+    difference(){
+    translate([sin(i*dg)*cr,cos(i*dg)*cr,0]){
     cylinder(h=2, r=5.5); // size of each cog
+    }
+    translate([-(sin(i*dg)*cr),-(cos(i*dg)*cr),0]){
+    cylinder(h=2,r=20);
+    }
+    }
+    translate([sin(i*dg)*cr,cos(i*dg)*cr,0]){
+    cylinder(h=2.5, r=2.5); // number placeholder
     }
 }
 }
