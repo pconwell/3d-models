@@ -24,11 +24,13 @@ translate([0,0,3])
         cr = 4; // radius from center to cog cutout cirle center
         dg = 36; // degrees between each cog
         
-        for (i=[0:1:9])
+        for (i=[0:1:9]){
 
         translate([sin(i*dg)*cr,cos(i*dg)*cr,0])
         cylinder(h=3, r=1); // size of each cog
-    }
+    
+            }
+        }
     
 // spine
 translate([0,0,3])
@@ -106,5 +108,54 @@ cube([2,8,2]);
 
 */
 
+// ----- DIAL ----- //
+
+// plate
+translate([30,0,0])
+difference(){
+    cylinder(h=2, r=14); //plate
+    cylinder(h=2, r=5.5); //core hole
+} 
 
 
+// core mechanism cutout space
+translate([30,0,0])
+difference(){
+    cylinder(h=2, r=5.5); //ring OD
+    cylinder(h=2, r=3.25); //ring ID
+    translate([0,3.75,0]) // upper indent space
+    cylinder(h=2, r=3);
+    translate([0,-3.75,0]) //lower indent space
+    cylinder(h=2, r=3);
+
+}
+
+// upper indent & arms
+translate([30,8.65,0])
+difference(){
+    cylinder(h=2, r=5);
+    cylinder(h=2, r=4.8);
+}
+translate([30,3.75,0])
+cylinder(h=2, r=1);
+
+// lower indent & arms
+translate([30,-8.65,0])
+difference(){
+    cylinder(h=2, r=5);
+    cylinder(h=2, r=4.8);
+}
+translate([30,-3.75,0])
+cylinder(h=2, r=1);
+
+//outer nub circles
+translate([30,0,0]){
+//cylinder(h=3,r=5.5);
+cr = 10;
+dg = 36;
+for (i=[0:1:9]) {
+    translate([sin(i*dg)*cr,cos(i*dg)*cr,0]) {
+    cylinder(h=2, r=5.5); // size of each cog
+    }
+}
+}
