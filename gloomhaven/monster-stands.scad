@@ -33,15 +33,14 @@ translate([0,0,3])
         }
     
 // spine
-translate([0,0,3])
-translate([0,0,3])
-    cylinder(h=2, r=3, $fn=10);
+translate([0,0,6])
+    rotate([0,0,90])
+    cylinder(h=2, r=3, $fn=5);
 
 // cap
-translate([0,0,3])
-translate([0,0,3])
-translate([0,0,2])
-    cylinder(h=1, r1=3.25, r2=2.5, $fn=10);
+translate([0,0,8])
+    rotate([0,0,90])
+    cylinder(h=1, r1=3.25, r2=2.5, $fn=5);
     
 // ----- TOP ----- //
   
@@ -49,14 +48,18 @@ translate([0,0,2])
 cl = .1;
 
 // plate
-translate([-30,0,0])
+translate([-30,0,0]){
 difference(){
-    cylinder(h=3, r=14); //plate
-    cylinder(h=2-cl, r=3+(cl/2), $fn=10); //hole
-    translate([0,0,2-cl])
-    cylinder(h=1+cl,r=3.25+(cl/2), $fn=10); //hole countersink
-    translate([-11,0,0])
-    cylinder(h=3, r=5.5, $fn=6); //number slot
+   cylinder(h=3, r=14); //plate
+   rotate([0,0,90])
+   cylinder(h=2-cl, r=3+(cl/2), $fn=5); //hole
+   translate([0,0,2-cl])
+   rotate([0,0,90])
+   cylinder(h=1+cl,r=3.25+(cl/2), $fn=5); //hole countersink
+   translate([0,-11,0])
+   rotate([0,0,90])
+   cylinder(h=3, r=5.5, $fn=6); //number slot
+   }
 }
 
 /*
@@ -110,59 +113,110 @@ cube([2,8,2]);
 
 // ----- DIAL ----- //
 
+// move to coordinates for this piece
+translate([30, 0, 0]) {
+
 // plate
-translate([30,0,0])
+//translate([30,0,0])
 difference(){
     cylinder(h=2, r=14); //plate
-    cylinder(h=2, r=5.5); //core hole
+    cylinder(h=2.1, r=5.5); //core hole
 } 
 
-
-// core mechanism cutout space
-translate([30,0,0])
+// UPPER ARM
+// Upper Inner Ring - Support
+intersection(){
 difference(){
-    cylinder(h=2, r=5.5); //ring OD
-    cylinder(h=2, r=3.75); //ring ID
-    translate([0,3.75,0]) // upper indent space
-    cylinder(h=2, r=3);
-    translate([0,-3.75,0]) //lower indent space
-    cylinder(h=2, r=3);
-
+   cylinder(h=2, r=5.5);
+   cylinder(h=2.1, r=3.625);
+}
+intersection(){
+rotate([0,0,270])
+cube(10);
+rotate([0,0,300])
+cube(10);
+}
 }
 
-// upper indent & arms
-translate([30,8.9,0])
+// Upper Outer Ring - Arm
+intersection(){
 difference(){
-    cylinder(h=2, r=5);
-    cylinder(h=2, r=4.8);
+   cylinder(h=2, r=4.625);
+   cylinder(h=2.1, r=3.625);
 }
-translate([30,4,0])
+cube(10);
+}
+
+// Upper Indent
+translate([0,4,0])
+difference(){
 cylinder(h=2, r=1);
+   translate([0,-3,0])
+   difference(){
+   cylinder(h=2, r=5.5);
+   cylinder(h=2.1, r=3.625);
+}
+}
 
-// lower indent & arms
-translate([30,-8.9,0])
+
+// LOWER ARM
+// Lower Inner Ring - Support
+intersection(){
 difference(){
-        cylinder(h=2, r=5);
-    cylinder(h=2, r=4.8);
+   cylinder(h=2, r=5.5);
+   cylinder(h=2.1, r=3.625);
 }
-translate([30,-4,0])
-cylinder(h=2, r=1);
+intersection(){
+rotate([0,0,90])
+cube(10);
+rotate([0,0,120])
+cube(10);
+}
+}
 
-//outer nub circles
-translate([30,0,0]){
-cr = 10;
-dg = 36;
-for (i=[0:1:9]) {
-    difference(){
-    translate([sin(i*dg)*cr,cos(i*dg)*cr,0]){
-    cylinder(h=2, r=5.5); // size of each cog
-    }
-    translate([-(sin(i*dg)*cr),-(cos(i*dg)*cr),0]){
-    cylinder(h=2,r=20);
-    }
-    }
-    translate([sin(i*dg)*cr,cos(i*dg)*cr,0]){
-    cylinder(h=2.5, r=2.5); // number placeholder
-    }
+// Lower Outer Ring - Arm
+intersection(){
+difference(){
+   cylinder(h=2, r=4.625);
+   cylinder(h=2.1, r=3.625);
+}
+rotate([0,0,180])
+cube(10);
+}
+
+// Lower Indent
+translate([0,-4,0])
+difference(){
+cylinder(h=2, r=1);
+   translate([0,3,0])
+   difference(){
+   cylinder(h=2, r=5.5);
+   cylinder(h=2.1, r=3.625);
 }
 }
+
+// outer numerals 0-9, radially outward-facing
+ cr = 10; // distance of texture disc from center
+ dg = 36; // degrees between each disc
+
+difference(){
+   for (i = [0:1:9]) {
+      x = sin(i * dg) * cr;
+      y = cos(i * dg) * cr;
+      angle = -i * dg; // rotate so text faces out
+
+      //texture discs
+      translate([x, y, 0])
+      cylinder(h=2, r=5.5);
+
+      // number text, raised and facing outward
+      color("black") //for screen viewing only
+      translate([x, y, 2])  // raise above disc
+      rotate([0, 0, angle + 180])  // face outward
+      linear_extrude(height=.2)
+      text(str(i), size=6, font="Arial", halign="center", valign="center");
+ };
+ cylinder(h=3, r=5.5); // remove "inner" portion of texture discs
+}
+ 
+} // end translate
