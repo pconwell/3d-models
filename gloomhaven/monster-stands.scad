@@ -7,7 +7,9 @@ please adhere to Creative Commons license as outlined above
 $fa = 1;
 $fs = 0.4;
 
-// ----- BASE ----- //
+// -------------------------------- //
+// ------------- BASE ------------- //
+// -------------------------------- //
 
 // plate
 difference(){
@@ -45,7 +47,9 @@ translate([0,0,8])
     rotate([0,0,90])
     cylinder(h=1, r1=3.25, r2=2.5, $fn=5);
     
-// ----- TOP ----- //
+// -------------------------------- //
+// ------------- TOP -------------- //
+// -------------------------------- //
   
 // clearance  
 cl = .1;
@@ -72,144 +76,106 @@ difference(){
    }
    
 // Standee Holder Row #1
-translate([-8,8,3])
+translate([-8,8,3]){
 cube([16,2,3]);
-translate([-8,9,3])
+translate([0,1,0])
 cylinder(h=3, r=1);
-translate([8,9,3])
+translate([0,1,3])
+sphere(1);
+translate([16,1,3])
+sphere(1);
+translate([16,1,0])
 cylinder(h=3, r=1);
-translate([-8,9,6])
-sphere(1);
-translate([8,9,6])
-sphere(1);
-translate([-8,9,6])
+translate([0,1,3])
 rotate([0,90,0])
 cylinder(h=16,r=1);
+}
    
 // Standee Holder Row #2
-translate([-10,4,3])
+translate([-10,3.9,3]){
 cube([20,2,3]);
-translate([-10,5,3])
+translate([0,1,0])
 cylinder(h=3, r=1);
-translate([10,5,3])
+translate([20,1,0])
 cylinder(h=3, r=1);
-translate([-10,5,6])
+translate([0,1,3])
 sphere(1);
-translate([10,5,6])
+translate([20,1,3])
 sphere(1);
-translate([-10,5,6])
+translate([0,1,3])
 rotate([0,90,0])
 cylinder(h=20,r=1);
-
-// Standee Holder Row #3a
-translate([-10,0,3])
-cube([5,2,3]);
-translate([-10,1,3])
-cylinder(h=3, r=1);
-translate([-5,1,3])
-cylinder(h=3, r=1);
-translate([-10,1,6])
-sphere(1);
-translate([-5,1,6])
-sphere(1);
-translate([-10,1,6])
-rotate([0,90,0])
-cylinder(h=5,r=1);
-
-// Standee Holder Row #3b
-translate([5,0,3])
-cube([5,2,3]);
-translate([5,1,3])
-cylinder(h=3, r=1);
-translate([10,1,3])
-cylinder(h=3, r=1);
-translate([10,1,6])
-sphere(1);
-translate([5,1,6])
-sphere(1);
-translate([5,1,6])
-rotate([0,90,0])
-cylinder(h=5,r=1);
-
-// Standee Holder Row #4a
-translate([-10,-4,3])
-cube([5,2,3]);
-translate([-10,-3,3])
-cylinder(h=3, r=1);
-translate([-5,-3,3])
-cylinder(h=3, r=1);
-translate([-10,-3,6])
-sphere(1);
-translate([-5,-3,6])
-sphere(1);
-translate([-10,-3,6])
-rotate([0,90,0])
-cylinder(h=5,r=1);
-
-// Standee Holder Row #4b
-translate([5,-4,3])
-cube([5,2,3]);
-translate([5,-3,3])
-cylinder(h=3, r=1);
-translate([10,-3,3])
-cylinder(h=3, r=1);
-translate([10,-3,6])
-sphere(1);
-translate([5,-3,6])
-sphere(1);
-translate([5,-3,6])
-rotate([0,90,0])
-cylinder(h=5,r=1);
-
-
-//// standee holder row #1
-//translate([-14,-8,3])
-//cube([16,2,2]); //base box
-//translate([-21,-8,3])
-//cylinder(h=2,r=1); //rounded end 1
-//translate([-21,-8,5])
-//sphere(1); //rounded end top joint 1
-//translate([-21,8,3])
-//cylinder(h=2,r=1); //rounded end 2
-//translate([-21,8,5])
-//sphere(1); //rounded end top joint 2
-//translate([-21,-8,5])
-//rotate([-90,0,0])
-//cylinder(h=16,r=1); //rounded top
-//
-//// standee holder row #2
-//
-//translate([-26.5,-11,3])
-//cube([2,22,2]);
-//translate([-25.5,-11,3])
-//cylinder(h=2, r=1);
-//translate([-25.5,-11,5])
-//sphere(1);
-//translate([-25.5,11,3])
-//cylinder(h=2, r=1);
-//translate([-25.5,11,5])
-//sphere(1);
-//translate([-25.5,-11,5])
-//rotate([-90,0,0])
-//cylinder(h=22,r=1); //rounded top
-//
-//// standee holder row #3
-//
-//translate([-31,-12,3])
-//cube([2,8,2]);
-//translate([-31,4,3])
-//cube([2,8,2]);
-//
-//// standee holder row #4
-//
-//translate([-35.5,-12,3])
-//cube([2,8,2]);
-//translate([-35.5,4,3])
-//cube([2,8,2]); 
-
 }
 
-// ----- DIAL ----- //
+// Standee Holder Row #3a
+translate([-10,-0.2,3]){
+cube([5,2,3]);
+translate([0,1,0])
+cylinder(h=3, r=1);
+translate([5,1,0])
+cylinder(h=3, r=1);
+translate([0,1,3])
+sphere(1);
+translate([5,1,3])
+sphere(1);
+translate([0,1,3])
+rotate([0,90,0])
+cylinder(h=5,r=1);
+}
+
+// Standee Holder Row #3b
+translate([5,-0.2,3]){
+cube([5,2,3]);
+translate([0,1,0])
+cylinder(h=3, r=1);
+translate([5,1,0])
+cylinder(h=3, r=1);
+translate([5,1,3])
+sphere(1);
+translate([0,1,3])
+sphere(1);
+translate([0,1,3])
+rotate([0,90,0])
+cylinder(h=5,r=1);
+}
+
+// Standee Holder Row #4a
+translate([-10,-4.3,3]){
+cube([5,2,3]);
+translate([0,1,0])
+cylinder(h=3, r=1);
+translate([5,1,0])
+cylinder(h=3, r=1);
+translate([0,1,3])
+sphere(1);
+translate([5,1,3])
+sphere(1);
+translate([0,1,3])
+rotate([0,90,0])
+cylinder(h=5,r=1);
+}
+
+// Standee Holder Row #4b
+translate([5,-4.3,3]){
+cube([5,2,3]);
+translate([0,1,0])
+cylinder(h=3, r=1);
+translate([5,1,0])
+cylinder(h=3, r=1);
+translate([5,1,3])
+sphere(1);
+translate([0,1,3])
+sphere(1);
+translate([0,1,3])
+rotate([0,90,0])
+cylinder(h=5,r=1);
+}
+
+} // end translate
+
+// -------------------------------- //
+// ------------- DIAL ------------- //
+// -------------------------------- //
 
 // move to coordinates for this piece
 translate([30, 0, 0]) {
@@ -318,3 +284,52 @@ difference(){
 }
  
 } // end translate
+
+
+// -------------------------------- //
+// ------------- 10 HP ------------ //
+// -------------------------------- //
+
+translate([0,-40,0]){
+difference(){
+union(){
+cylinder(h=1.5, r=16, $fn=3);
+rotate([0,0,30])
+cylinder(h=3, r=16, $fn=3);
+rotate([0,0,60])
+cylinder(h=1.5, r=16, $fn=3);
+rotate([0,0,90])
+cylinder(h=3, r=16, $fn=3);
+}
+cylinder(h=1.5, r=6);
+}
+difference() {
+        translate([0, 0, 3])
+            cylinder(h=1.5, r=5.9);
+
+        // engraved text — lowered slightly into cylinder
+        translate([0, 0, 4.01])  // just into top surface
+        rotate([0, 0, 0])
+        linear_extrude(height = 0.6)
+            text("HP", size = 4, font = "Arial", halign = "center", valign = "center");
+    }
+   
+}
+
+translate([0,40,0]){
+   difference(){
+   cylinder(h=3, r=16);
+   cylinder(h=1.5, r=6);
+   }
+difference() {
+        translate([0, 0, 3])
+            cylinder(h=1.5, r=5.9);
+
+        // engraved text — lowered slightly into cylinder
+        translate([0, 0, 4.01])  // just into top surface
+        rotate([0, 0, 0])
+        linear_extrude(height = 0.6)
+            text("S", size = 4, font = "Arial", halign = "center", valign = "center");
+    }
+      
+}
