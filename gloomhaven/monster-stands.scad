@@ -19,15 +19,18 @@ difference(){
 translate([0,0,3])
     difference(){
         //center
-        cylinder(h=3, r=3.5); // outer cog radius
+      cylinder(h=3, r=3.5); // outer cog radius
         
-        cr = 4; // radius from center to cog cutout cirle center
-        dg = 36; // degrees between each cog
+      cr = 4; // radius from center to cog cutout cirle center
+      dg = 36; // degrees between each cog
         
-        for (i=[0:1:9]){
+      for (i=[0:1:9]){
+           
+      x = sin(i * dg) * cr;
+      y = cos(i * dg) * cr;
 
-        translate([sin(i*dg)*cr,cos(i*dg)*cr,0])
-        cylinder(h=3, r=1); // size of each cog
+      translate([x,y,0])
+      cylinder(h=3.1, r=1); // size of each cog
     
             }
         }
@@ -56,9 +59,14 @@ difference(){
    translate([0,0,2-cl])
    rotate([0,0,90])
    cylinder(h=1+cl,r=3.25+(cl/2), $fn=5); //hole countersink
-   translate([0,-11,0])
-   rotate([0,0,90])
+   translate([0,-11,0]){
+   rotate([0,0,90]){
    cylinder(h=3, r=5.5, $fn=6); //number slot
+   translate([0,0,1])
+   cylinder(h=2, r=6.5, $fn=6);
+   translate([0,0,2])
+   cylinder(h=1, r=7.5, $fn=6);
+   }}
    }
 }
 
@@ -157,7 +165,6 @@ cylinder(h=2, r=1);
    cylinder(h=2.1, r=3.625);
 }
 }
-
 
 // LOWER ARM
 // Lower Inner Ring - Support
