@@ -73,7 +73,8 @@ module text_wrapper(characters, ext_height, font_size) {
 
 difference() {
    cylinder(h=3, r=14);       // base plate
-   cylinder(h=1.5, r=6);      // bottom hole
+   rotate([0,0,90])
+   cylinder(h=1.5, r=6, $fn=5);      // bottom hole
 }
 
 translate([0, 0, 3])
@@ -199,12 +200,14 @@ translate([0, -40, 0]) {
          rotate([0, 0, 60]) cylinder(h=1, r=16, $fn=3);
          rotate([0, 0, 90]) cylinder(h=2, r=16, $fn=3);
       }
-      cylinder(h=1.5, r=6); // bottom hole
+      rotate([0,0,90])
+      cylinder(h=1.5, r=6, $fn=5); // bottom hole
    }
 
    difference() {
       translate([0, 0, 2])
-         cylinder(h=1.5, r=6 - cl);
+         rotate([0,0,90])
+         cylinder(h=1.5, r1=6-cl, r2=6-cl*2, $fn=5);
       translate([0, 0, 3])
          text_wrapper("HP", 0.5, 4);
    }
@@ -217,12 +220,14 @@ translate([0, -40, 0]) {
 translate([0, 40, 0]) {
    difference() {
       cylinder(h=2, r=15);       // base
-      cylinder(h=1.5, r=6);      // bottom hole
+      rotate([0,0,90])
+      cylinder(h=1.5, r=6, $fn=5);      // bottom hole
    }
 
    difference() {
       translate([0, 0, 2])
-         cylinder(h=1.5, r=6 - cl);
+         rotate([0,0,90])
+         cylinder(h=1.5, r1=6 - cl, r2=6-cl*2, $fn=5);
       translate([0, 0, 3])
          text_wrapper("S", 0.5, 5);
    }
